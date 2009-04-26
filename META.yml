@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Git-SVNReplay
-version:            1.0001
+version:            1.0200
 abstract:           ~
 author:
     - Paul Miller <jettero@cpan.org>
