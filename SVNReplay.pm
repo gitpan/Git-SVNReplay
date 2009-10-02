@@ -13,7 +13,7 @@ use IPC::System::Simple qw(systemx capturex);
 use Date::Parse; # dates in (Date::Manip will not handle git/date-R time...)
 use POSIX; # dates out
 
-our $VERSION = '1.0213';
+our $VERSION = '1.0214';
 
 our %DEFAULTS = (
     db_file       => "replay.rdb",
@@ -333,10 +333,12 @@ sub logging_systemx {
 
 # quiet {{{
 sub quiet {
-    *eend = *nop;
-    *einfo = *nop;
-    *ebegin = *nop;
-    *ewarn = *nop;
+    no warnings 'redefine';
+
+    *eend   = sub(@) {};
+    *einfo  = sub($) {};
+    *ebegin = sub($) {};
+    *ewarn  = sub($) {};
 
     $_[0];
 }
